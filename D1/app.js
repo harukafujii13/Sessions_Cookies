@@ -1,7 +1,5 @@
 const express = require("express");
-const cookie = require("cookie-parser");
 const sessions = require("express-session");
-const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -52,3 +50,12 @@ app.post("/user", (req, res) => {
     res.send("Invalid username or password");
   }
 });
+
+app.get("logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
+app.listen(PORT, () => console.log(`Server Running at port ${PORT}`));
+
+console.log(req.session);
